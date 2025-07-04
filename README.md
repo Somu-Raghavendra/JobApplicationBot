@@ -55,7 +55,7 @@ job_apply_bot/
 ## Credentials File Format
 
 See `config/credentials.sample.json` for the structure.  
-**Never share your real credentials or commit them to GitHub!**
+
 
 ---
 
