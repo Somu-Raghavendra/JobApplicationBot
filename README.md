@@ -59,6 +59,3 @@ See `config/credentials.sample.json` for the structure.
 
 ---
 
-## License
-
-MIT License
