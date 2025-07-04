@@ -1,12 +1,18 @@
-# Job Apply Bot
+# Job Application Bot 🤖
 
 A Python bot to automate job applications on Instahyre and Hirist platforms.
+
+## 📌 Overview
+
+Tired of applying to jobs manually? This bot automates the login and job application process for Instahyre and Hirist using Selenium WebDriver. It simulates user behavior and applies to relevant jobs based on your profile.
 
 ## Features
 
 - Apply to jobs automatically on Instahyre and Hirist
+- Applies to jobs with a single click
 - Supports user profiles and credential management
 - Search and apply based on skills, experience, and location
+- Basic logging and error handling
 
 ## Setup
 
