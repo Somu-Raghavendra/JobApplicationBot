@@ -71,6 +71,7 @@ class HiristBot:
 
         self.driver.find_element(By.XPATH, "//button[normalize-space()='Apply All']").click()
         tabs = self.driver.window_handles
+        time.sleep(1)
         if len(tabs) > 1:
             self.driver.switch_to.window(tabs[1])
             total_applied = self.driver.find_element(By.CSS_SELECTOR, ".job-closed")

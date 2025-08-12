@@ -83,7 +83,7 @@ class JobApplyManager:
         if self.search_mode:
             self.skills = input("Enter skills (comma separated): ").strip().split(",")
             self.yoe = input("Enter years of experience: ").strip()
-            self.locations = input("Enter preferred locations (comma separated): ").strip().split(",")
+            self.locations = input("Enter preferred locations (comma separated), Type 'ALL' if no preference: ").strip().split(",")
 
     def get_creds(self, platform):
         """
@@ -114,12 +114,17 @@ class JobApplyManager:
         email, password = self.get_creds(self.platform)
 
         if self.platform == "instahyre":
+            job_functions_roles = ''
+            job_funcs = input("Do you want to apply based on job functions (yes/no): ")
+            if job_funcs == "yes":
+                job_functions_roles = input("Enter the job function you want to apply (eg:- 'SDET', "
+                                            "'All - Software Engineering'): ")
             logging.info("Starting Instahyre bot...")
-            bot = InstahyreBot(email, password, self.skills, self.yoe, self.locations, self.search_mode)
+            bot = InstahyreBot(email, password, self.skills, self.yoe, self.locations, self.search_mode, job_functions_roles)
         elif self.platform == "hirist":
             logging.info("Starting Hirist bot...")
             bot = HiristBot(email, password, self.skills, self.yoe, self.locations, self.search_mode)
-            bot.apply_jobs()
+            # bot.apply_jobs()
         else:
             logging.error(f"Unsupported platform: {self.platform}")
             return

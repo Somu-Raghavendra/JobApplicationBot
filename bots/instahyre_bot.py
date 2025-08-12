@@ -11,13 +11,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class InstahyreBot:
-    def __init__(self, email, password, skills, yoe, locations, search_mode):
+    def __init__(self, email, password, skills, yoe, locations, search_mode, job_functions_roles = ""):
         self.email = email
         self.password = password
         self.skills = skills
         self.yoe = yoe
         self.locations = locations
         self.search_mode = search_mode
+        self.job_functions_roles = job_functions_roles
 
         chrome_options = Options()
         chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -54,7 +55,7 @@ class InstahyreBot:
 
             # Check if it contains 'fa-angle-down'
             # logging.info(f"this is the required class value: {class_value}")
-            time.sleep(5)
+            time.sleep(2)
             if "fa-angle-down" in class_value:
                 logging.info("Detected 'fa-angle-down'. Clicking to expand.")
                 element.click()
@@ -71,6 +72,7 @@ class InstahyreBot:
         yoe_elem = self.driver.find_element(By.ID, "years")
         show_elem = self.driver.find_element(By.ID, "show-results")
         loc_elem = self.driver.find_element(By.ID, "locations-selectized")
+        job_func_elem = self.driver.find_element(By.ID, "job-functions-selectized")
 
         for skill in self.skills:
             skills_elem.send_keys(skill.strip())
@@ -91,7 +93,9 @@ class InstahyreBot:
             for loc in self.locations:
                 loc_elem.send_keys(loc.strip())
                 loc_elem.send_keys(Keys.ENTER)
-
+        if self.job_functions_roles:
+            job_func_elem.send_keys(self.job_functions_roles)
+            job_func_elem.send_keys(Keys.ENTER)
         time.sleep(5) #Just to check the details in the UI
         show_elem.send_keys(Keys.SPACE)
 
